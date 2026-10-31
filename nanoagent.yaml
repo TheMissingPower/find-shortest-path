@@ -1,0 +1,44 @@
+_ > nanoagent.plugin.v0001.ManifestConfig:
+id: shortest-path-grid
+name: Shortest Path Grid
+version: 0.1.0
+status: ready
+spec: nanoagent.plugin/v0001
+
+runtime > nanoagent.plugin.v0001.RuntimeConfig:
+  type: mcp_stdio
+  command: [uv, run, --frozen, python, -m, plugin]
+
+permissions > nanoagent.plugin.v0001.PermissionsConfig:
+  network > nanoagent.plugin.v0001.NetworkConfig:
+    hosts: []
+  filesystem > nanoagent.plugin.v0001.FilesystemConfig:
+    write: [workspace]
+
+# One entry per contract.Tool; its input and output classes are contract.TOOLS's.
+tools > dict[contract.Tool, nanoagent.plugin.v0001.ToolConfig]:
+  pin_path:
+    description: Pin the task's answer key, the bundled puzzle with its fingerprint, its minimum path cost and one path of that cost
+  get_puzzle:
+    description: Get a bundled puzzle's grid of cell costs and walls, its start and target, and the move and cost rules
+  explore:
+    description: Look around up to 100 open cells of a puzzle at once, giving each one's cost and its open neighbors with theirs
+
+# One entry per contract.Task; its input class is contract.TASKS's.
+tasks > dict[contract.Task, nanoagent.plugin.v0001.TaskConfig]:
+  shortest-path:
+    description: Find a cheapest path across a weighted grid with walls from the start to the target, or say rightly that none exists
+    runner: agent
+    tools: [get_puzzle, explore]
+    reference: pin_path
+    instructions: |-
+      Rules. The grid's rows are strings: each character is a digit 0-9, the cost of entering that cell, or # for a wall. A cell is {row, col}, 0-indexed, row 0 at the top and col 0 at the left, so the character of cell {row: r, col: c} is grid[r][c]. A path starts at the start, ends at the target, and moves one cell up, down, left or right per step, never diagonally, never onto #, never off the grid, never visiting a cell twice. Its cost is the sum of the digits of every cell on it, the start and the target included. When the start is the target, the path is that one cell.
+      Plan. (1) Call get_puzzle once with the task's puzzle_id. (2) Optionally call explore once, with every open cell whose neighbors you need, up to 100 at a time; it gives each cell's cost and its open neighbors with their costs. (3) Find a path of minimum cost, as Dijkstra's algorithm would: a cheaper long path beats a shorter costly one. (4) Call submit.
+      Submit. puzzle_id: the task's. reachable: true when any path joins the start to the target. cost: the sum of the digits of every cell on your path. path: every cell of the path in order, from the start to the target inclusive, as {row, col} objects. When walls cut the target off from the start, submit reachable false, cost null and path []. Any path of the minimum cost is right; a costlier valid path earns only part of the score.
+  show-puzzle:
+    description: Show a bundled puzzle's grid, start, target and rules
+    runner: tool
+    tools: [get_puzzle]
+    reference: null
+    instructions: |-
+      Call get_puzzle with the puzzle_id to show its grid. The puzzles are warmup-3x3, single-cell, start-is-target, one-row, one-column, next-door, all-zero, all-ties, detour, toll-gate, zero-corridor, spiral, reverse-corners, walled-target, boxed-start, split-board and the generated gen-5x5 to gen-10x10-maze.

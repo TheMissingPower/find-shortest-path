@@ -1,0 +1,121 @@
+{
+ "note": "The largest generated puzzle, answered with a cheapest path.",
+ "task": "shortest-path",
+ "arguments": {
+  "puzzle_id": "gen-10x10"
+ },
+ "steps": [
+  {
+   "tool": "get_puzzle",
+   "arguments": {
+    "puzzle_id": "gen-10x10"
+   }
+  },
+  {
+   "tool": "submit",
+   "arguments": {
+    "puzzle_id": "gen-10x10",
+    "reachable": true,
+    "cost": 62,
+    "path": [
+     {
+      "row": 0,
+      "col": 0
+     },
+     {
+      "row": 1,
+      "col": 0
+     },
+     {
+      "row": 1,
+      "col": 1
+     },
+     {
+      "row": 1,
+      "col": 2
+     },
+     {
+      "row": 1,
+      "col": 3
+     },
+     {
+      "row": 1,
+      "col": 4
+     },
+     {
+      "row": 0,
+      "col": 4
+     },
+     {
+      "row": 0,
+      "col": 5
+     },
+     {
+      "row": 0,
+      "col": 6
+     },
+     {
+      "row": 1,
+      "col": 6
+     },
+     {
+      "row": 1,
+      "col": 7
+     },
+     {
+      "row": 2,
+      "col": 7
+     },
+     {
+      "row": 3,
+      "col": 7
+     },
+     {
+      "row": 4,
+      "col": 7
+     },
+     {
+      "row": 4,
+      "col": 6
+     },
+     {
+      "row": 5,
+      "col": 6
+     },
+     {
+      "row": 6,
+      "col": 6
+     },
+     {
+      "row": 6,
+      "col": 7
+     },
+     {
+      "row": 7,
+      "col": 7
+     },
+     {
+      "row": 7,
+      "col": 8
+     },
+     {
+      "row": 7,
+      "col": 9
+     },
+     {
+      "row": 8,
+      "col": 9
+     },
+     {
+      "row": 9,
+      "col": 9
+     }
+    ]
+   }
+  }
+ ],
+ "expect": {
+  "valid": true,
+  "score": 1.0
+ }
+}

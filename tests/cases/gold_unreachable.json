@@ -1,0 +1,40 @@
+{
+ "note": "A walled-in target, rightly answered as unreachable after exploring it.",
+ "task": "shortest-path",
+ "arguments": {
+  "puzzle_id": "walled-target"
+ },
+ "steps": [
+  {
+   "tool": "get_puzzle",
+   "arguments": {
+    "puzzle_id": "walled-target"
+   }
+  },
+  {
+   "tool": "explore",
+   "arguments": {
+    "puzzle_id": "walled-target",
+    "cells": [
+     {
+      "row": 3,
+      "col": 3
+     }
+    ]
+   }
+  },
+  {
+   "tool": "submit",
+   "arguments": {
+    "puzzle_id": "walled-target",
+    "reachable": false,
+    "cost": null,
+    "path": []
+   }
+  }
+ ],
+ "expect": {
+  "valid": true,
+  "score": 1.0
+ }
+}

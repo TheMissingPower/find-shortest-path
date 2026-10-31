@@ -1,0 +1,11 @@
+_ > nanoagent.plugin.v0001.ProductConfig:
+tagline: "Cheapest paths across weighted grids with walls, checked cell by cell"
+summary: "A LeetCode-style shortest-path puzzle for agents. Each puzzle is a grid of cell costs from 0 to 9 with walls, a start and a target. The agent reads the grid, can explore any cells' open neighbors, and submits a path of minimum total cost, or says that walls cut the target off. The verifier solves every puzzle itself with Dijkstra's algorithm and checks the answer against 12 rules: the right start and end, no walls, no diagonal steps, no repeated cells, an honest cost, and the minimum."
+highlights:
+  - "25 bundled puzzles, from a single cell to 10 x 10 mazes, including traps where the fewest steps is not the cheapest path"
+  - "Ties welcome: any path of the minimum cost passes, and a valid but costlier path earns partial credit"
+  - "Fully offline and deterministic, with 12 named checks on every verdict"
+steps:
+  - "Name a puzzle, such as detour or gen-10x10, or ask to see one first"
+  - "The agent reads the grid, explores the cells it needs, and submits its path and cost"
+  - "See the path, its cost, and every check of the verdict"

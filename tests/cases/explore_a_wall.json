@@ -1,0 +1,30 @@
+{
+ "note": "Exploring a wall cell: the tool refuses the call.",
+ "task": "shortest-path",
+ "arguments": {
+  "puzzle_id": "detour"
+ },
+ "steps": [
+  {
+   "tool": "get_puzzle",
+   "arguments": {
+    "puzzle_id": "detour"
+   }
+  },
+  {
+   "tool": "explore",
+   "arguments": {
+    "puzzle_id": "detour",
+    "cells": [
+     {
+      "row": 1,
+      "col": 1
+     }
+    ]
+   }
+  }
+ ],
+ "expect": {
+  "error_contains": "is a wall"
+ }
+}

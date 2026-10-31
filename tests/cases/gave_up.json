@@ -1,0 +1,31 @@
+{
+ "note": "A reachable target answered as unreachable.",
+ "task": "shortest-path",
+ "arguments": {
+  "puzzle_id": "gen-8x8-dense-walls"
+ },
+ "steps": [
+  {
+   "tool": "get_puzzle",
+   "arguments": {
+    "puzzle_id": "gen-8x8-dense-walls"
+   }
+  },
+  {
+   "tool": "submit",
+   "arguments": {
+    "puzzle_id": "gen-8x8-dense-walls",
+    "reachable": false,
+    "cost": null,
+    "path": []
+   }
+  }
+ ],
+ "expect": {
+  "valid": false,
+  "failed": [
+   "reachability"
+  ],
+  "score": 0.0
+ }
+}

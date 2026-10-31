@@ -1,0 +1,38 @@
+/* Styles for this plugin's renderers (renderers.js), over the kit's (kit/kit.css). They apply
+   only inside each renderer's output, in its own shadow root. Use the kit's variables
+   (var(--accent), var(--surface), var(--radius), ...) so they follow the host's light and dark
+   themes. */
+.heading {
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+.grid {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.grid .cell {
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  border: 1px solid var(--border, #8884);
+}
+.grid .wall {
+  background: var(--text, #333);
+  opacity: 0.75;
+}
+.grid .start,
+.grid .target {
+  outline: 2px solid var(--accent, #3b6fd8);
+  outline-offset: -2px;
+  font-weight: 700;
+}
+.grid sup {
+  font-size: 0.6rem;
+  margin-left: 1px;
+  color: var(--accent, #3b6fd8);
+}
+.rule,
+.steps {
+  margin: 0.5rem 0 0;
+  overflow-wrap: anywhere;
+}

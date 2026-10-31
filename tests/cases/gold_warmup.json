@@ -1,0 +1,49 @@
+{
+ "note": "The warmup puzzle, answered with a cheapest path.",
+ "task": "shortest-path",
+ "arguments": {
+  "puzzle_id": "warmup-3x3"
+ },
+ "steps": [
+  {
+   "tool": "get_puzzle",
+   "arguments": {
+    "puzzle_id": "warmup-3x3"
+   }
+  },
+  {
+   "tool": "submit",
+   "arguments": {
+    "puzzle_id": "warmup-3x3",
+    "reachable": true,
+    "cost": 8,
+    "path": [
+     {
+      "row": 0,
+      "col": 0
+     },
+     {
+      "row": 1,
+      "col": 0
+     },
+     {
+      "row": 1,
+      "col": 1
+     },
+     {
+      "row": 2,
+      "col": 1
+     },
+     {
+      "row": 2,
+      "col": 2
+     }
+    ]
+   }
+  }
+ ],
+ "expect": {
+  "valid": true,
+  "score": 1.0
+ }
+}
