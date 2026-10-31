@@ -1,5 +1,7 @@
 """Checks shared by the tool verifiers. Pure functions of their arguments."""
 
+from itertools import pairwise
+
 from .grid import adjacent, fingerprint, in_bounds, is_open, path_cost, solve
 from .puzzles import PUZZLES
 
@@ -54,14 +56,16 @@ def path_checks(grid, start, target, path):
         walls = [list(cell) for cell in path if not is_open(grid, cell)]
         message = f"{_listed(walls)} {_is(walls)} a wall (#)"
         checks["no-walls"] = (True, "", None) if not walls else (False, message, walls)
-    jumps = [[list(a), list(b)] for a, b in zip(path, path[1:]) if not adjacent(a, b)]
+    jumps = [[list(a), list(b)] for a, b in pairwise(path) if not adjacent(a, b)]
     checks["adjacent-steps"] = (
         (True, "", None)
         if not jumps
         else (
             False,
-            f"{len(jumps)} step(s) are not one move up, down, left or right, "
-            f"the first from {jumps[0][0]} to {jumps[0][1]}",
+            (
+                f"{len(jumps)} step(s) are not one move up, down, left or right, "
+                f"the first from {jumps[0][0]} to {jumps[0][1]}"
+            ),
             jumps,
         )
     )

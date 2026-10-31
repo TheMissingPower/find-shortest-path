@@ -3,6 +3,7 @@ Dijkstra and an independent oracle. The verifier's copies of the rules are byte-
 
 from __future__ import annotations
 
+from itertools import pairwise
 from pathlib import Path
 
 import pytest
@@ -69,7 +70,7 @@ def test_dijkstra_agrees_with_the_oracle(name: str) -> None:
         return
     assert path[0] == start and path[-1] == target
     assert all(is_open(grid, cell) for cell in path)
-    assert all(adjacent(a, b) for a, b in zip(path, path[1:]))
+    assert all(adjacent(a, b) for a, b in pairwise(path))
     assert len(set(path)) == len(path)
     assert path_cost(grid, path) == cost
 

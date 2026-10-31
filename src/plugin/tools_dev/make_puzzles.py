@@ -48,9 +48,9 @@ def _paths_of_length(grid, start, target, length):
         for dr, dc in ((-1, 0), (0, 1), (1, 0), (0, -1)):
             step = (row + dr, col + dc)
             r, c = step
-            if 0 <= r < len(grid) and 0 <= c < len(grid[0]) and grid[r][c] != WALL and step not in path:
-                if abs(r - target[0]) + abs(c - target[1]) <= length - len(path) - 1:
-                    yield from walk(path + [step])
+            open_step = 0 <= r < len(grid) and 0 <= c < len(grid[0]) and grid[r][c] != WALL and step not in path
+            if open_step and abs(r - target[0]) + abs(c - target[1]) <= length - len(path) - 1:
+                yield from walk(path + [step])
 
     yield from walk([start])
 
